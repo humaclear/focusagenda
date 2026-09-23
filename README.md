@@ -1,4 +1,4 @@
-# Focus Media · Agenda de grabaciones
+  # Focus Media · Agenda de grabaciones
 
 Plataforma web lista para desplegar en Vercel bajo `agenda.focusmedia.mx`. Los clientes pueden consultar disponibilidad, enviar una solicitud y revisar su estatus con un folio y una clave privada. El equipo administra la agenda desde `/admin` y puede autorizar, rechazar o modificar fecha, horario, duración y mensaje al cliente.
 
@@ -185,3 +185,4 @@ Siguiente etapa recomendada:
 | `lib/server.js` | Validaciones compartidas del servidor. |
 | `google-apps-script/Code.gs` | Sheets, Calendar, correos y disponibilidad. |
 | `.env.example` | Variables necesarias en Vercel. |
+Última actualización: 23 de septiembre de 2026.
