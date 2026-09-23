@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08080b" />
+    <meta
+      name="description"
+      content="Solicita y organiza tu próxima grabación con Focus Media."
+    />
+    <title>Agenda tu grabación | Focus Media</title>
+    <link rel="icon" href="/assets/focus-media-logo.png" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#agenda">Ir al formulario</a>
+
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Focus Media, inicio">
+        <span class="brand-mark">
+          <img src="/assets/focus-media-logo.png" alt="" />
+        </span>
+        <span>
+          <strong>FOCUS MEDIA</strong>
+          <small>Agenda de producción</small>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a class="status-link" href="/estatus">Consultar mi solicitud</a>
+        <button class="contact-link" id="headerContact" type="button">
+          Contactar al equipo
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> Agenda digital de producción</div>
+          <h1 id="hero-title">Tu próxima producción, <em>bien planeada.</em></h1>
+          <p>
+            Consulta disponibilidad, comparte los detalles de tu sesión y recibe
+            la confirmación del equipo de Focus Media en un solo lugar.
+          </p>
+          <div class="hero-badges" aria-label="Características del servicio">
+            <span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>
+              Disponibilidad en tiempo real
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+              Atención de lunes a domingo
+            </span>
+          </div>
+        </div>
+        <div class="hero-orbit" aria-hidden="true">
+          <div class="orbit-card orbit-main">
+            <span class="pulse"></span>
+            <small>Próxima disponibilidad</small>
+            <strong id="heroNextDate">Calculando…</strong>
+            <span>Solicitud con mínimo 5 días de anticipación</span>
+          </div>
+          <div class="orbit-card orbit-mini orbit-top">PLANEACIÓN LISTA</div>
+          <div class="orbit-card orbit-mini orbit-bottom">CONFIRMACIÓN DEL EQUIPO</div>
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="Proceso de reservación">
+        <div><strong>01</strong><span>Selecciona fecha</span></div>
+        <div><strong>02</strong><span>Comparte tu brief</span></div>
+        <div><strong>03</strong><span>Recibe confirmación</span></div>
+      </section>
+
+      <section class="booking-layout" id="agenda">
+        <form class="booking-card" id="bookingForm" novalidate>
+          <div class="card-heading">
+            <div>
+              <span class="section-kicker">Solicitud de grabación</span>
+              <h2>Cuéntanos sobre tu sesión</h2>
+            </div>
+            <span class="secure-label">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+              Datos protegidos
+            </span>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">
+              <span>1</span>
+              <div><strong>Empresa y contacto</strong><small>¿Con quién coordinamos?</small></div>
+            </div>
+            <div class="field-grid two-columns">
+              <label class="field">
+                <span>Empresa o marca *</span>
+                <input id="client" name="client" type="text" maxlength="80" autocomplete="organization" placeholder="Escribe el nombre de tu empresa" required />
+                <small class="field-error"></small>
+              </label>
+              <label class="field">
+                <span>Persona de contacto *</span>
+                <input id="contactName" name="contactName" type="text" maxlength="80" autocomplete="name" placeholder="Nombre y apellido" required />
+                <small class="field-error"></small>
+              </label>
+              <label class="field">
+                <span>WhatsApp *</span>
+                <div class="input-prefix"><b>+52</b><input id="phone" name="phone" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel-national" placeholder="10 dígitos" required /></div>
+                <small class="field-error"></small>
+              </label>
+              <label class="field">
+                <span>Correo electrónico *</span>
+                <input id="email" name="email" type="email" maxlength="120" autocomplete="email" placeholder="nombre@empresa.com" required />
+                <small class="field-error"></small>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">
+              <span>2</span>
+              <div><strong>Fecha y horario</strong><small>Mostramos únicamente opciones que cumplen la anticipación requerida.</small></div>
+            </div>
+
+            <div class="calendar-wrap">
+              <div class="calendar-toolbar">
+                <button type="button" class="icon-button" id="prevMonth" aria-label="Mes anterior">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <strong id="calendarMonth">Mes</strong>
+                <button type="button" class="icon-button" id="nextMonth" aria-label="Mes siguiente">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+              </div>
+              <div class="calendar-weekdays" aria-hidden="true">
+                <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+              </div>
+              <div class="calendar-grid" id="calendarGrid" role="grid" aria-label="Calendario de fechas disponibles"></div>
+              <div class="calendar-legend" aria-label="Disponibilidad del calendario">
+                <span><i class="legend-open"></i> Disponible</span>
+                <span><i class="legend-partial"></i> Disponibilidad parcial</span>
+                <span><i class="legend-full"></i> Sin horarios</span>
+              </div>
+              <input id="date" name="date" type="hidden" required />
+              <small class="field-error calendar-error" id="dateError"></small>
+            </div>
+
+            <div class="slot-panel" id="slotPanel">
+              <div class="slot-heading">
+                <div><strong>Horarios disponibles</strong><span id="selectedDateLabel">Selecciona una fecha</span></div>
+                <span class="timezone">Hora CDMX</span>
+              </div>
+              <div class="slot-grid" id="slotGrid">
+                <p class="slot-placeholder">Elige un día para consultar los horarios.</p>
+              </div>
+              <input id="time" name="time" type="hidden" required />
+              <small class="field-error" id="timeError"></small>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">
+              <span>3</span>
+              <div><strong>Brief de producción</strong><small>La información nos ayuda a llegar preparados.</small></div>
+            </div>
+            <div class="field-grid two-columns">
+              <label class="field">
+                <span>Tipo de grabación *</span>
+                <select id="recordingType" name="recordingType" required>
+                  <option value="">Selecciona una opción</option>
+                  <option>Contenido para Reels / TikTok</option>
+                  <option>Producto o demostración</option>
+                  <option>Testimoniales / entrevistas</option>
+                  <option>Cobertura de evento</option>
+                  <option>Contenido institucional</option>
+                  <option>Otro</option>
+                </select>
+                <small class="field-error"></small>
+              </label>
+              <label class="field">
+                <span>Duración estimada *</span>
+                <select id="duration" name="duration" required>
+                  <option value="2 horas">2 horas</option>
+                  <option value="3 horas">3 horas</option>
+                  <option value="Más de 3 horas (requiere autorización)">Más de 3 horas — requiere autorización</option>
+                </select>
+                <small class="field-error"></small>
+              </label>
+              <label class="field">
+                <span>Modalidad *</span>
+                <select id="modality" name="modality" required>
+                  <option value="">Selecciona una opción</option>
+                  <option>En instalaciones del cliente</option>
+                  <option>En locación externa</option>
+                  <option>En estudio</option>
+                  <option>Por definir</option>
+                </select>
+                <small class="field-error"></small>
+              </label>
+              <label class="field">
+                <span>Personas frente a cámara *</span>
+                <select id="participants" name="participants" required>
+                  <option value="">Selecciona</option>
+                  <option value="1">1 persona</option>
+                  <option value="2">2 personas</option>
+                  <option value="3-5">3 a 5 personas</option>
+                  <option value="6+">6 o más personas</option>
+                  <option value="Por definir">Por definir</option>
+                </select>
+                <small class="field-error"></small>
+              </label>
+              <label class="field full-width" id="locationField">
+                <span>Dirección o referencia de la locación</span>
+                <input id="location" name="location" type="text" maxlength="180" autocomplete="street-address" placeholder="Puedes escribir “por definir”" />
+                <small class="field-error"></small>
+              </label>
+              <label class="field full-width">
+                <span>Objetivo y contenido a grabar *</span>
+                <textarea id="objective" name="objective" rows="4" maxlength="900" placeholder="Ejemplo: grabar 10 videos cortos sobre…" required></textarea>
+                <div class="field-meta"><small class="field-error"></small><small><span id="objectiveCount">0</span>/900</small></div>
+              </label>
+              <label class="field full-width">
+                <span>Link de planeación, referencias o guiones</span>
+                <input id="briefLink" name="briefLink" type="url" maxlength="500" inputmode="url" placeholder="https://drive.google.com/…" />
+                <small class="field-error"></small>
+              </label>
+              <label class="field full-width">
+                <span>Requerimientos especiales</span>
+                <textarea id="specialRequirements" name="specialRequirements" rows="3" maxlength="600" placeholder="Equipo especial, iluminación, audio, dron, talento, maquillaje, utilería, permisos, etc."></textarea>
+                <small class="field-hint">Si tu producción requiere algo especial, el equipo te contactará para revisar viabilidad y costo.</small>
+              </label>
+            </div>
+          </div>
+
+          <div class="consent-box">
+            <label class="check-row">
+              <input id="acceptRules" name="acceptRules" type="checkbox" required />
+              <span>Acepto las reglas de agenda y entiendo que esta solicitud queda <strong>pendiente de confirmación</strong> por Focus Media.</span>
+            </label>
+            <small class="field-error" id="rulesError"></small>
+            <label class="honeypot" aria-hidden="true">No llenar<input name="website" tabindex="-1" autocomplete="off" /></label>
+          </div>
+
+          <button class="primary-button" id="submitButton" type="submit">
+            <span>Enviar solicitud</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          </button>
+          <p class="submit-note">No se realiza ningún cargo desde esta plataforma.</p>
+        </form>
+
+        <aside class="booking-sidebar">
+          <div class="summary-card sticky-card">
+            <span class="section-kicker">Resumen</span>
+            <h3>Tu solicitud</h3>
+            <dl class="summary-list">
+              <div><dt>Empresa</dt><dd id="summaryClient">Sin seleccionar</dd></div>
+              <div><dt>Fecha</dt><dd id="summaryDate">Sin seleccionar</dd></div>
+              <div><dt>Horario</dt><dd id="summaryTime">Sin seleccionar</dd></div>
+              <div><dt>Duración</dt><dd id="summaryDuration">2 horas</dd></div>
+              <div><dt>Modalidad</dt><dd id="summaryModality">Sin seleccionar</dd></div>
+            </dl>
+            <div class="status-preview"><span></span><div><small>Estatus inicial</small><strong>Pendiente de confirmación</strong></div></div>
+          </div>
+
+          <div class="rules-card">
+            <div class="rules-title">
+              <span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3.5 6v5.5c0 4.8 3.6 8.1 8.5 9.5 4.9-1.4 8.5-4.7 8.5-9.5V6L12 3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>
+              </span>
+              <div><strong>Reglas de agenda</strong><small>Antes de enviar</small></div>
+            </div>
+            <ul>
+              <li><b>5 días mínimo.</b> No aceptamos solicitudes de un día para otro.</li>
+              <li><b>Confirmación obligatoria.</b> La fecha queda reservada únicamente cuando el equipo la confirma.</li>
+              <li><b>Cambios con tiempo.</b> Solicita reprogramaciones al menos 48 horas antes; después quedan sujetas a disponibilidad.</li>
+              <li><b>Puntualidad.</b> Un retraso no extiende automáticamente el horario reservado.</li>
+              <li><b>Brief preparado.</b> Comparte planeación o guiones antes de la sesión.</li>
+              <li><b>Producción especial.</b> Sesiones de más de 3 horas, dron, talento, locación, utilería o equipo adicional requieren autorización de Focus Media.</li>
+            </ul>
+            <button class="secondary-button" id="rulesContact" type="button">Tengo un requerimiento especial</button>
+          </div>
+        </aside>
+      </section>
+
+      <section class="faq-section" aria-labelledby="faq-title">
+        <div>
+          <span class="section-kicker">Preguntas frecuentes</span>
+          <h2 id="faq-title">Antes de reservar</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>¿Enviar la solicitud significa que mi fecha ya está apartada?</summary>
+            <p>No. Primero revisamos disponibilidad, locación y requerimientos. Recibirás una confirmación expresa del equipo.</p>
+          </details>
+          <details>
+            <summary>¿Por qué debo agendar con cinco días de anticipación?</summary>
+            <p>Ese margen permite revisar la planeación, preparar equipo y coordinar al personal necesario para tu producción.</p>
+          </details>
+          <details>
+            <summary>¿Qué pasa si necesito grabar antes?</summary>
+            <p>Contacta directamente al equipo. Revisaremos si existe disponibilidad extraordinaria, sin garantía de aceptación.</p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="brand footer-brand">
+        <span class="brand-mark"><img src="/assets/focus-media-logo.png" alt="" /></span>
+        <span><strong>FOCUS MEDIA</strong><small>Contenido que avanza</small></span>
+      </div>
+      <p>© <span id="currentYear"></span> Focus Media. La información enviada se utiliza únicamente para coordinar la producción solicitada.</p>
+    </footer>
+
+    <dialog class="confirmation-modal" id="confirmationModal">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>
+      </div>
+      <span class="section-kicker">Solicitud recibida</span>
+      <h2>Ya estamos preparando lo siguiente.</h2>
+      <p>Tu solicitud fue registrada. Nuestro equipo revisará la información y te contactará para confirmar.</p>
+      <div class="confirmation-code"><small>Folio</small><strong id="confirmationId">—</strong></div>
+      <div class="confirmation-code confirmation-token"><small>Clave privada de seguimiento</small><strong id="confirmationToken">—</strong></div>
+      <div class="confirmation-details" id="confirmationDetails"></div>
+      <a class="secondary-button tracking-button" id="confirmationStatusLink" href="/estatus">Consultar el estatus</a>
+      <button class="primary-button" id="closeConfirmation" type="button">Entendido</button>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="/config.js"></script>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

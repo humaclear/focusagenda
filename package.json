@@ -1,0 +1,13 @@
+{
+  "name": "focusmedia-agenda",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Plataforma de solicitudes de grabación de Focus Media para Vercel.",
+  "scripts": {
+    "dev": "vercel dev",
+    "test": "node tests/validate.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

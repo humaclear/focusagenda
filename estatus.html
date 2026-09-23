@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08080b" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Consulta tu solicitud | Focus Media</title>
+    <link rel="icon" href="/assets/focus-media-logo.png" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="status-page">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Focus Media, inicio">
+        <span class="brand-mark"><img src="/assets/focus-media-logo.png" alt="" /></span>
+        <span><strong>FOCUS MEDIA</strong><small>Seguimiento de grabación</small></span>
+      </a>
+      <a class="status-link" href="/">Agendar otra grabación</a>
+    </header>
+
+    <main>
+      <section class="status-hero">
+        <span class="eyebrow status-eyebrow"><span></span> Seguimiento en tiempo real</span>
+        <h1>Consulta el estado de tu grabación.</h1>
+        <p>Usa el folio y la clave privada recibidos al registrar tu solicitud. Solo tú y el equipo de Focus Media pueden consultar los detalles.</p>
+      </section>
+
+      <section class="status-shell">
+        <div class="lookup-card">
+          <form id="statusForm" novalidate>
+            <label class="field">
+              <span>Folio *</span>
+              <input id="statusId" name="id" type="text" autocomplete="off" placeholder="FM-260930-ABCDE" required />
+              <small class="field-error"></small>
+            </label>
+            <label class="field">
+              <span>Clave de seguimiento *</span>
+              <input id="statusToken" name="token" type="text" autocomplete="off" placeholder="Clave privada" required />
+              <small class="field-error"></small>
+            </label>
+            <button class="primary-button" id="statusSubmit" type="submit"><span>Consultar</span></button>
+          </form>
+          <p class="lookup-help">Encontrarás ambos datos en el correo de recepción. Si no los tienes, escribe al equipo desde WhatsApp.</p>
+        </div>
+
+        <article class="status-result hidden" id="statusResult" aria-live="polite">
+          <div class="status-result-head">
+            <div>
+              <span class="section-kicker">Solicitud <b id="resultId"></b></span>
+              <h2 id="resultClient">—</h2>
+            </div>
+            <span class="status-pill" id="resultStatus">Pendiente</span>
+          </div>
+
+          <div class="status-timeline" id="statusTimeline">
+            <span class="timeline-step">Recibida</span>
+            <span class="timeline-step">En revisión</span>
+            <span class="timeline-step">Confirmada</span>
+            <span class="timeline-step">Completada</span>
+          </div>
+
+          <div class="status-result-grid">
+            <div class="status-detail"><small>Fecha</small><strong id="resultDate">—</strong></div>
+            <div class="status-detail"><small>Horario</small><strong id="resultTime">—</strong></div>
+            <div class="status-detail"><small>Duración</small><strong id="resultDuration">—</strong></div>
+            <div class="status-detail"><small>Tipo de grabación</small><strong id="resultType">—</strong></div>
+            <div class="status-detail"><small>Modalidad</small><strong id="resultModality">—</strong></div>
+            <div class="status-detail"><small>Última actualización</small><strong id="resultUpdated">—</strong></div>
+          </div>
+          <div class="status-note hidden" id="resultNote"></div>
+          <div class="status-contact"><button class="secondary-button" id="statusContact" type="button">Contactar a Focus Media</button></div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <div class="brand footer-brand">
+        <span class="brand-mark"><img src="/assets/focus-media-logo.png" alt="" /></span>
+        <span><strong>FOCUS MEDIA</strong><small>Contenido que avanza</small></span>
+      </div>
+      <p>La información de seguimiento es privada. No compartas tu clave con terceros.</p>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/config.js"></script>
+    <script src="/status.js" defer></script>
+  </body>
+</html>

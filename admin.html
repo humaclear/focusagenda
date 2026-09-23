@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="theme-color" content="#08080b" />
+    <title>Panel de grabaciones | Focus Media</title>
+    <link rel="icon" href="/assets/focus-media-logo.png" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="admin-body">
+    <div class="login-overlay" id="loginOverlay">
+      <form class="login-card" id="loginForm">
+        <div class="brand">
+          <span class="brand-mark"><img src="/assets/focus-media-logo.png" alt="" /></span>
+          <span><strong>FOCUS MEDIA</strong><small>Acceso interno</small></span>
+        </div>
+        <h1>Panel de grabaciones</h1>
+        <p>Ingresa la clave configurada en Vercel para consultar y actualizar solicitudes.</p>
+        <label>
+          <span>Clave de acceso</span>
+          <input id="adminToken" type="password" autocomplete="current-password" required />
+        </label>
+        <small class="field-error" id="loginError"></small>
+        <button class="primary-button" type="submit"><span>Entrar al panel</span></button>
+      </form>
+    </div>
+
+    <main class="admin-shell">
+      <header class="admin-topbar">
+        <div>
+          <span class="section-kicker">Operación interna</span>
+          <h1>Agenda de grabaciones</h1>
+        </div>
+        <div class="admin-actions">
+          <button class="compact-button" id="refreshButton" type="button">Actualizar</button>
+          <a class="compact-button dark" href="/" target="_blank" rel="noopener">Ver portal</a>
+          <button class="compact-button" id="logoutButton" type="button">Salir</button>
+        </div>
+      </header>
+
+      <section class="metrics-grid" aria-label="Indicadores de agenda">
+        <article class="metric"><small>Pendientes</small><strong id="metricPending">0</strong><span>Requieren respuesta</span></article>
+        <article class="metric"><small>Confirmadas</small><strong id="metricConfirmed">0</strong><span>Próximas sesiones</span></article>
+        <article class="metric"><small>Esta semana</small><strong id="metricWeek">0</strong><span>Todos los estatus</span></article>
+        <article class="metric"><small>Total visible</small><strong id="metricTotal">0</strong><span>Según los filtros</span></article>
+      </section>
+
+      <section class="admin-panel">
+        <div class="admin-panel-head">
+          <div><strong>Solicitudes</strong><small id="lastUpdated">Sin actualizar</small></div>
+          <div class="admin-filters">
+            <input id="searchFilter" type="search" placeholder="Buscar cliente o folio" />
+            <select id="statusFilter">
+              <option value="">Todos los estatus</option>
+              <option>Pendiente</option>
+              <option>Confirmada</option>
+              <option>Reprogramada</option>
+              <option>Rechazada</option>
+              <option>Completada</option>
+              <option>Cancelada</option>
+            </select>
+          </div>
+        </div>
+        <div id="tableContainer">
+          <div class="empty-state">Ingresa para cargar las solicitudes.</div>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="admin-edit-modal" id="editBookingModal">
+      <form id="editBookingForm">
+        <div class="admin-edit-head">
+          <div><span class="section-kicker">Modificar solicitud</span><h2 id="editBookingTitle">Grabación</h2></div>
+          <button class="dialog-close" id="closeEditBooking" type="button" aria-label="Cerrar">×</button>
+        </div>
+        <div class="admin-edit-body">
+          <input id="editBookingId" type="hidden" />
+          <div class="field-grid two-columns">
+            <label class="field">
+              <span>Fecha *</span>
+              <input id="editDate" type="date" required />
+              <small class="field-error"></small>
+            </label>
+            <label class="field">
+              <span>Horario *</span>
+              <select id="editTime" required></select>
+              <small class="field-error"></small>
+            </label>
+            <label class="field">
+              <span>Duración *</span>
+              <select id="editDuration" required>
+                <option>2 horas</option>
+                <option>3 horas</option>
+                <option>Más de 3 horas (requiere autorización)</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Estatus *</span>
+              <select id="editStatus" required>
+                <option>Pendiente</option>
+                <option>Confirmada</option>
+                <option>Reprogramada</option>
+                <option>Rechazada</option>
+                <option>Completada</option>
+                <option>Cancelada</option>
+              </select>
+            </label>
+            <label class="field full-width">
+              <span>Mensaje para el cliente</span>
+              <textarea id="editAdminNote" rows="4" maxlength="500" placeholder="Ejemplo: El horario de las 3:00 p. m. fue autorizado por el equipo."></textarea>
+              <small class="field-hint">El cliente verá este mensaje en su seguimiento y lo recibirá por correo.</small>
+            </label>
+          </div>
+          <div class="dialog-actions">
+            <button class="secondary-button" id="cancelEditBooking" type="button">Cancelar</button>
+            <button class="primary-button" id="saveEditBooking" type="submit"><span>Guardar cambios</span></button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/config.js"></script>
+    <script src="/admin.js" defer></script>
+  </body>
+</html>
